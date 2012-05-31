@@ -1,15 +1,36 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Mocha Tests</title>
-  
+  <title>Sales Tax Tests using Mocha</title>
+  <!-- 
+    @Author: Juzer Ali
+    Date: 2012/06/01
+    
+    Description: This is a test suite built for testing Sales Tax problem built using Mocha and Chai
+
+  -->
+
+  <!-- mocha has dependency on jQuery -->
   <script src="./lib/jquery.js"></script>
+
+  <!-- chai will be our assertion library -->
   <script src="./lib/chai/chai.js"></script>
+
+  <!-- The mocha testing framework -->
   <script src="./lib/mocha/mocha.js"></script>
+
+
   <script>
-  mocha.setup("bdd");
+  /*
+  * Set up mocha to use bdd style testing
+  */
+    mocha.setup("bdd");
   </script>
+
+  <!-- The main file in which business logic resides -->
   <script src="./salestax.js"></script>
+
+  <!-- The Testing library -->
   <script src="./Tests/salestax.spec.js"></script>
   <link rel="stylesheet" href="./lib/mocha/mocha.css" />
 
@@ -20,9 +41,12 @@
   <div id="mocha"></div>
 
   <script type="text/javascript">
-  $(function(){
-    mocha.run();
-  });
+    /*
+    * Run mocha
+    */
+    $(function(){
+      mocha.run();
+    });
   </script>
 </body>
 </html>
