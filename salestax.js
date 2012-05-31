@@ -23,7 +23,7 @@ var Tax = function(salesTaxValue, importTaxValue){
 
 	this.calculate = function(item){
 		item.taxApplicable = this.getSalesTax(item.type) + this.getImportTax(item.imported);
-		return Math.round((item.price*item.taxApplicable/100)*100/5)*5/100;
+		return Math.ceil((item.price*item.taxApplicable/100)*100/5)*5/100;
 	};
 }
 

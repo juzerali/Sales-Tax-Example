@@ -1,0 +1,28 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mocha Tests</title>
+  
+  <script src="./lib/jquery.js"></script>
+  <script src="./lib/chai/chai.js"></script>
+  <script src="./lib/mocha/mocha.js"></script>
+  <script>
+  mocha.setup("bdd");
+  </script>
+  <script src="./salestax.js"></script>
+  <script src="./Tests/salestax.spec.js"></script>
+  <link rel="stylesheet" href="./lib/mocha/mocha.css" />
+
+  
+
+</head>
+<body>
+  <div id="mocha"></div>
+
+  <script type="text/javascript">
+  $(function(){
+    mocha.run();
+  });
+  </script>
+</body>
+</html>
