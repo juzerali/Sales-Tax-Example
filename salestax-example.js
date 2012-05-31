@@ -23,23 +23,25 @@ var Tax = function(salesTaxValue, importTaxValue){
 
 	this.calculate = function(item){
 		item.taxApplicable = this.getSalesTax(item.type) + this.getImportTax(item.imported);
-		return (Math.round((item.price*item.taxApplicable/100)*100/5)*5/100);
+		return Math.round((item.price*item.taxApplicable/100)*100/5)*5/100;
 	};
 }
 
 var tax = new Tax();
 
-var BillGenerator = function(bill){
-	var billDetails = {};
-	billDetails["Sales Taxes"] = billDetails["Total"] = 0;
-	bill.forEach(function(item){
-		var taxed = tax.calculate(item);
-		billDetails["Sales Taxes"] += taxed;
-		billDetails["Total"] = billDetails["Total"] + item["price"] + taxed;
 
-		billDetails[item["name"]] = Number(item["price"]).toFixed(2);
+var Bill = function(bill){
+	var taxedBill = {
+		"Sales Taxes" : 0, 
+		"Total" : 0
+	};
+
+	bill.forEach(function(item){
+		var taxValue = tax.calculate(item); 
+		taxedBill[item["name"]] = Number((item["price"]+taxValue).toFixed(2));
+		taxedBill["Sales Taxes"] = Number((taxedBill["Sales Taxes"]+taxValue).toFixed(2));
+		taxedBill["Total"] = Number((taxedBill["Total"]+item["price"]+taxValue).toFixed(2));
 	});
-	billDetails["Total"] = billDetails["Total"].toFixed(2);
-	billDetails["Sales Taxes"] = billDetails["Sales Taxes"].toFixed(2);
-	return billDetails;
+
+	return taxedBill;
 };
