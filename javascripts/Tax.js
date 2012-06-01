@@ -53,7 +53,7 @@
 		this.addExemptedFromSalesTaxTypes = function(types){
 			if(typeof(types) === "string") exemptedFromSalesTax.push(types);
 			else if(types instanceof Array){
-				 types.forEach(function(type){console.log(typeof(type));
+				 types.forEach(function(type){
 				 	if(typeof(type) === "string") exemptedFromSalesTax.push(type);
 				 	else console.error("Invalid Input");
 				 });

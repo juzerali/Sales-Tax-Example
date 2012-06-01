@@ -12,6 +12,9 @@ This file illustrates the flow and assumptions made during development of this a
 	- `var bill = new Bill(items /* An array of JSON objects described below*/);`
 		This api is sufficient and, can and should be used to test any other input values. Input is expected in form of JSON objects of type item as described below.
 
+####Additional info
+* Mocha is used as testing library, to be used in BDD style
+* chai is used as assertion library
 
 #Components
 

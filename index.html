@@ -1,0 +1,73 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Sales Tax Tests using Mocha</title>
+  <!-- 
+    @Author: Juzer Ali
+    Date: 2012/06/01
+    
+    Description: This is a test suite built for testing Sales Tax problem built using Mocha and Chai
+
+  -->
+
+  <!-- mocha has dependency on jQuery -->
+  <script src="./lib/jquery.js"></script>
+
+  <!-- The main file in which business logic resides -->
+  <script src="./javascripts/Tax.js"></script>
+  <script src="./javascripts/Bill.js"></script>
+  <script src="./javascripts/index.js"></script>
+
+  <!-- The Testing unit -->
+
+
+  
+
+</head>
+<body>
+<h1>Sales Tax</h1>
+<br><br>
+This file illustrates the flow and assumptions made during development of this application.
+
+<h4>With respect to application as a whole, following assumptions have been made.<br><br>
+<ul>
+<li> This is not intended for end user, as such there is no GUI, but just an api.</li>
+<li> Test cases are written to test the complete environment, there are no test cases to test individual components (classes).</li>
+<li> The environment of this program is a browser window.</li>
+<li> Object tax and Class Bill will be exposed to window. Test in following way
+  <ul>
+  <li> <pre>tax.setSalesTaxValue, tax.setImportTaxValue, tax.addExemptedFromSalesTaxTypes</pre></li>
+  <li> <pre>var bill = new Bill(items /* An array of JSON objects described below*/);</pre><br>
+    This api is sufficient and, can and should be used to test any other input values. Input is expected in form of JSON objects of type item as described below.</li>
+  </li></ul><br>
+
+<h4>Additional info</h4>
+<ul>
+<li> Mocha is used as testing library, to be used in BDD style</li>
+<li> chai is used as assertion library</li>
+<h1>Components</h1>
+
+<h2>private class Tax</h2>
+
+<pre>`var tax = new Tax(salesTax, importTax, exemptedItems);`</pre><br><br>
+  <ul>
+  <li> This class embodies the tax structure. It has lots of private variables held as closures.
+  The constructor accepts 3 optional arguments, salesTaxValue and importTaxValue and array of exempted products which are passed to private instance variables with the same names. If no arguments are passed the variables are initialized with  default values 0, 0, and an empty array respectively.</li>
+
+  <li> This class is not directly exposed to the (window) environment, but just an instance of this class named tax is exposed which can be directly accessed in context of the browser window through window object (window.tax).
+  The class is wrapped around a code block which, on initialization returns a tax object with empty values, these values have to be set in main-like function, which is /javascript/index.js in our case</li><br><br>
+
+
+<h2>public class Bill</h2>
+
+<h6> This is the class which accepts **items** which is an array of **item** JSON object (mentioned below) with given properties</h6>
+<code type="javascript" language="javascript" lang="javascript">
+item = { 
+  name: String,
+  price: Number,
+  type: String /* Type of item, this will determine whether the item is to be exempted from sales tax */,
+  imported: Boolean 
+}
+</code>
+</body>
+</html>
