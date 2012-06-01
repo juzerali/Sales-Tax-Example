@@ -55,16 +55,16 @@ var tax = new Tax();
 /*
 *	Bill class is the class
 */
-var Bill = function(bill){
+var Bill = function(items){
 
-	if(typeOf(bill) !== "Object") return null;
+	if(typeOf(items) !== "Object") return null;
 
 	var taxedBill = {
 		"Sales Taxes" : 0, 
 		"Total" : 0
 	};
 
-	bill.forEach(function(item){
+	items.forEach(function(item){
 		var taxValue = tax.calculate(item); 
 		taxedBill[item["name"]] = Number((item["price"]+taxValue).toFixed(2));
 		taxedBill["Sales Taxes"] = Number((taxedBill["Sales Taxes"]+taxValue).toFixed(2));
