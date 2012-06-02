@@ -1,5 +1,7 @@
 var should = chai.should();
 chai.Assertion.includeStack = true;
+
+
 describe("In Sales Tax with sales tax 10% and import tax 5%", function() {
 
   describe("An exempted item which is not imported", function() {
@@ -7,6 +9,7 @@ describe("In Sales Tax with sales tax 10% and import tax 5%", function() {
 
       var input = {name: "1 book", price: 12.49, type: "book", imported: false};
         var bill = new Bill(input);
+
         bill["1 book"].should.equal(12.49);
         bill["Total"].should.equal(12.49);
         bill["Sales Taxes"].should.equal(0);
@@ -53,16 +56,20 @@ describe("In Sales Tax with sales tax 10% and import tax 5%", function() {
   });
 
   describe("If supplied with negative price", function() {
-    it("should throw an error", function() {
+    it("should throw an error stating \"Price cannot be negative\"", function() {
 
       var input = [
         {name: "1 imported bottle of perfume", price: -27.99, type: "perfume", imported: true},
       ];
-        (new Bill(input)).should.Throw(new Error("Price Cannot be negative"));
+
+      var billing = function(){
+        var bill = new Bill(input);
+      };
+        (billing).should.throw("Price Cannot be negative");
     });
   });
 
-  describe("Crude Test", function(){
+  describe("Testing with combination of inputs", function(){
     describe("input 1", function() {
       it("should return Total: 29.83, Sales Taxes: 1.50 with correct individual prices", function() {
 
@@ -88,7 +95,7 @@ describe("In Sales Tax with sales tax 10% and import tax 5%", function() {
             ];
 
         var bill = new Bill(input2);
-        bill.should.be.a("object");
+        bill.should.be.an("object");
         bill["1 imported box of chocolates"].should.equal(10.5);
         bill["1 imported bottle of perfume"].should.equal(54.65);
         bill["Sales Taxes"].should.equal(7.65);
@@ -108,7 +115,8 @@ describe("In Sales Tax with sales tax 10% and import tax 5%", function() {
         ];
 
         var bill = new Bill(input3);
-        bill.should.be.a("object");
+        bill.should.be.an("object"); 
+        bill.should.contain.property("1 packet of headache pills");
         bill["1 imported bottle of perfume"].should.equal(32.19);
         bill["1 bottle of perfume"].should.equal(20.89);
         bill["1 imported box of chocolates"].should.equal(11.85);
