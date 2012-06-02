@@ -62,10 +62,9 @@ describe("In Sales Tax with sales tax 10% and import tax 5%", function() {
         {name: "1 imported bottle of perfume", price: -27.99, type: "perfume", imported: true},
       ];
 
-      var billing = function(){
+      (function(){
         var bill = new Bill(input);
-      };
-        (billing).should.throw("Price Cannot be negative");
+      }).should.throw("Price Cannot be negative");
     });
   });
 

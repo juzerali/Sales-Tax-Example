@@ -4,6 +4,8 @@
 *	@Class Tax(salesTaxValue, importTaxValue, exemptedFromSalesTaxTypes)
 *			Default Values: salesTaxValue=0, importTaxValue=0, exemptedFromSalesTaxTypes=[]
 *		
+*	This is wrapped inside a code block since we don't want to expose this class to front end and want it to be used as a private class.
+*	The code block returns an instance of this class with empty values, they need to be set in a main-like function using setters
 */
 
 (function(){
@@ -13,7 +15,7 @@
 		*/	
 
 		/*
-		*	exempted is another private variable which is an array of types which should be exempted
+		*	exempted is another private variable which is an array of **types** which should be exempted
 		*	from local Sales Tax. This is an enum like object as in strongly typed languages.	
 		*/
 		var exemptedFromSalesTax = [];
@@ -79,6 +81,3 @@
 
 	return tax = new Tax();
 })();
-
-
-

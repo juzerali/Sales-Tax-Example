@@ -26,8 +26,9 @@
 </head>
 <body>
 <h1>Sales Tax</h1>
-<br><br>
-This file illustrates the flow and assumptions made during development of this application.
+<h2>This file illustrates the flow and assumptions made during development of this application.</h2>
+
+<h3>Test spec path /Test/salestax.spec.js and test can be run at path /Test/index.html
 
 <h4>With respect to application as a whole, following assumptions have been made.<br><br>
 <ul>
@@ -36,20 +37,22 @@ This file illustrates the flow and assumptions made during development of this a
 <li> The environment of this program is a browser window.</li>
 <li> Object tax and Class Bill will be exposed to window. Test in following way
   <ul>
-  <li> <pre>tax.setSalesTaxValue, tax.setImportTaxValue, tax.addExemptedFromSalesTaxTypes</pre></li>
+  <li> <pre>tax.setSalesTaxValue(10); tax.setImportTaxValue(5); tax.addExemptedFromSalesTaxTypes(['book', 'medicine', 'food']);</pre></li>
   <li> <pre>var bill = new Bill(items /* An array of JSON objects described below*/);</pre><br>
-    This api is sufficient and, can and should be used to test any other input values. Input is expected in form of JSON objects of type item as described below.</li>
+    This api is sufficient and, can and should be used to test any other input values. Input is expected in form of JSON objects of type item as described at the bottom of the page.</li>
   </li></ul><br>
 
 <h4>Additional info</h4>
 <ul>
 <li> Mocha is used as testing library, to be used in BDD style</li>
 <li> chai is used as assertion library</li>
+<li> Mocha has dependency on jquery to display test results.
+</ul>
 <h1>Components</h1>
 
 <h2>private class Tax</h2>
 
-<pre>`var tax = new Tax(salesTax, importTax, exemptedItems);`</pre><br><br>
+<pre>var tax = new Tax(salesTax, importTax, exemptedItems);</pre><br><br>
   <ul>
   <li> This class embodies the tax structure. It has lots of private variables held as closures.
   The constructor accepts 3 optional arguments, salesTaxValue and importTaxValue and array of exempted products which are passed to private instance variables with the same names. If no arguments are passed the variables are initialized with  default values 0, 0, and an empty array respectively.</li>
@@ -60,14 +63,16 @@ This file illustrates the flow and assumptions made during development of this a
 
 <h2>public class Bill</h2>
 
-<h6> This is the class which accepts **items** which is an array of **item** JSON object (mentioned below) with given properties</h6>
-<code type="javascript" language="javascript" lang="javascript">
+<h4> This is the class which accepts **items** which is an array of **item** JSON object (mentioned below) with given properties and returns key value pairs of given item names with their calculated prices inclusive of taxes and Total and Sales Taxes</h4>
+<h2>Type Item </h2>
+<code language="javascript" lang="javascript">
 item = { 
-  name: String,
-  price: Number,
-  type: String /* Type of item, this will determine whether the item is to be exempted from sales tax */,
-  imported: Boolean 
+  name: String,<br>
+  price: Number,<br>
+  type: String /* Type of item, this will determine whether the item is to be exempted from sales tax */,<br>
+  imported: Boolean <br>
 }
 </code>
+<div style="height: 300px"></div>
 </body>
 </html>
